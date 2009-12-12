@@ -19,8 +19,15 @@ function lambda(){
         a = '';
     }
 
+    if(b && b[0] == '#'){
+        b = b.replace(/^#/, '')
+        ret = '';
+    }else{
+        ret = ' return ' ;
+    }
+
     var funcname = 'temp' + lambda.counter,
-        func = funcname + ' = function(' + a +'){ return ' + b + '};' + funcname;
+        func = funcname + ' = function(' + a +'){' + ret + b + '};' + funcname;
 
     return eval(func);
 }

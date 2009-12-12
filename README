@@ -21,7 +21,7 @@ Example #2
 
 with
 
-    preload = $l('for(var i in arguments) (new Image()).src = arguments[i]')
+    preload = $l('#for(var i in arguments) (new Image()).src = arguments[i]')
 
 Example #3
 
@@ -44,10 +44,10 @@ i can replace it with
     $(function(){
       $('.swap').each(function(){
         (new Image()).src = $(this).attr('hover_image');
-        $(this).hover($l("
+        $(this).hover($l("#
           $.data(this, 'waiting_image', this.src);
           this.src = $(this).attr('hover_image');
-        "), $l("this.src = $.data(this, 'waiting_image')")
+        "), $l("#this.src = $.data(this, 'waiting_image')")
         )
       });
     });
