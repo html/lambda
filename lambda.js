@@ -6,17 +6,21 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-function lambda(args){
+function lambda(){
     if(!lambda.counter) lambda.counter = 0;
     lambda.counter ++;
+    var a,b;
 
-    if(arguments[1]) r = arguments[1];
-    else{
-        r = args;args = '';
+    if(arguments[1]){
+        a = arguments[0]
+        b = arguments[1];
+    }else{
+        b = arguments[0] || '';
+        a = '';
     }
 
     var funcname = 'temp' + lambda.counter,
-        func = funcname + ' = function(' + args +'){ return ' + r + '};' + funcname;
+        func = funcname + ' = function(' + a +'){ return ' + b + '};' + funcname;
 
     return eval(func);
 }
