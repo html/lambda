@@ -1,0 +1,58 @@
+Lambda
+====
+
+Tired of typing "function(){}" ? It is not necessary. You can type just "lambda()" or "$l()"
+With lambda you can replace, for example, following code parts
+
+Example #1
+
+    sum2 = function(a,b){ return a+b; };
+
+with
+
+    sum2 = $l('a,b', 'a+b');
+
+Example #2
+
+    preload = function(){
+        for(var i in arguments)
+            (new Image()).src = arguments[i];
+    }
+
+with
+
+    preload = $l('for(var i in arguments) (new Image()).src = arguments[i]')
+
+Example #3
+
+I use this code snippet for making hover effect to image 
+
+    $(function(){
+      $('.swap').each(function(){
+        (new Image()).src = $(this).attr('hover_image');
+        $(this).hover(function(){
+          $.data(this, 'waiting_image', this.src);
+          this.src = $(this).attr('hover_image');
+        }, function(){
+          this.src = $.data(this, 'waiting_image');
+        })
+      });
+    });
+
+i can replace it with
+
+    $(function(){
+      $('.swap').each(function(){
+        (new Image()).src = $(this).attr('hover_image');
+        $(this).hover($l("
+          $.data(this, 'waiting_image', this.src);
+          this.src = $(this).attr('hover_image');
+        "), $l("this.src = $.data(this, 'waiting_image')")
+        )
+      });
+    });
+
+Looks not very fine, isn't it ?
+Well it's just a function and now it handles only trivial situations, but it can be more powerfull
+
+Copyright (c) 2009 Olexiy Zamkoviy, released under the GPL license (http://www.gnu.org/licenses/gpl.html)
